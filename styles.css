@@ -58,9 +58,13 @@ img { max-width: 100%; }
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
     color: var(--white);
     padding: 80px 0 50px;
-    text-align: center;
+    text-align: left;
 }
-.hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.hero-inner { display: flex; align-items: center; gap: 4rem; }
+.hero-left { flex: 1; }
+.hero-right { flex: 0 0 260px; text-align: center; }
+.ctc-badge { width: 100%; max-width: 260px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+.hero-badges { display: flex; justify-content: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
 .badge {
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.15);
@@ -73,7 +77,7 @@ img { max-width: 100%; }
 }
 .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.15; margin-bottom: 20px; letter-spacing: -1px; }
 .hero h1 span { color: var(--orange); }
-.hero p { font-size: 1.1rem; color: var(--gray-200); max-width: 620px; margin: 0 auto 32px; line-height: 1.7; }
+.hero p { font-size: 1.1rem; color: var(--gray-200); max-width: 620px; margin: 0 0 32px; line-height: 1.7; }
 .hero-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
 .hero-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
 .stat { text-align: center; }
@@ -184,7 +188,10 @@ img { max-width: 100%; }
     .about-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
-    .hero { padding: 50px 0 40px; }
+    .hero { padding: 50px 0 40px; text-align: center; }
+    .hero-inner { flex-direction: column-reverse; gap: 2rem; }
+    .hero-badges { justify-content: center; }
+    .hero-right { flex: none; }
     .hero-stats { gap: 24px; }
     .enforcement-content { flex-direction: column; text-align: center; }
     .enforcement-penalty { text-align: center; }
