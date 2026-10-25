@@ -23,7 +23,7 @@
 /* --- RESET --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--font); color: var(--gray-800); line-height: 1.6; background: var(--white); }
+body { font-family: var(--font); color: var(--gray-800); line-height: 1.6; background: var(--white); overflow-x: hidden; }
 a { color: var(--orange); text-decoration: none; }
 a:hover { color: var(--orange-light); }
 ul { list-style: none; }
@@ -78,8 +78,8 @@ img { max-width: 100%; }
 .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.15; margin-bottom: 20px; letter-spacing: -1px; }
 .hero h1 span { color: var(--orange); }
 .hero p { font-size: 1.1rem; color: var(--gray-200); max-width: 620px; margin: 0 0 32px; line-height: 1.7; }
-.hero-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
-.hero-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
+.hero-buttons { display: flex; justify-content: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-stats { display: flex; justify-content: flex-start; gap: 40px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
 .stat { text-align: center; }
 .stat strong { display: block; font-size: 1.3rem; font-weight: 800; color: var(--orange); }
 .stat span { font-size: 0.75rem; color: var(--gray-200); line-height: 1.4; }
@@ -104,7 +104,7 @@ img { max-width: 100%; }
 .services { padding: 70px 0; background: var(--gray-50); }
 .services h2 { font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 12px; color: var(--navy); }
 .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-.service-card { background: var(--white); border-radius: 10px; padding: 32px; border: 1px solid var(--gray-100); transition: box-shadow 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+.service-card { display: flex; flex-direction: column; background: var(--white); border-radius: 10px; padding: 32px; border: 1px solid var(--gray-100); transition: box-shadow 0.2s, transform 0.2s; position: relative; overflow: hidden; }
 .service-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
 .service-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--orange); }
 .service-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -112,7 +112,7 @@ img { max-width: 100%; }
 .service-card ul { margin-bottom: 16px; }
 .service-card li { font-size: 0.85rem; color: var(--gray-600); padding: 4px 0 4px 16px; position: relative; }
 .service-card li::before { content: '--'; position: absolute; left: 0; color: var(--orange); font-weight: 600; }
-.service-link { font-size: 0.85rem; font-weight: 700; color: var(--orange); }
+.service-link { margin-top: auto; font-size: 0.85rem; font-weight: 700; color: var(--orange); }
 
 /* --- WHY VETFLEET --- */
 .why { padding: 70px 0; }
@@ -182,18 +182,27 @@ img { max-width: 100%; }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-    .nav-links { display: none; flex-direction: column; width: 100%; gap: 12px; padding-top: 12px; }
+    .container { padding: 0 16px; }
+    .nav .container { flex-wrap: wrap; }
+    .nav-brand { order: 1; font-size: 0.88rem; white-space: nowrap; }
+    .nav-links { order: 3; display: none; flex-direction: column; width: 100%; gap: 12px; padding-top: 12px; }
     .nav-links.open { display: flex; }
-    .nav-toggle { display: block; }
+    .nav-toggle { order: 2; display: block; flex: 0 0 auto; }
     .about-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
     .hero { padding: 50px 0 40px; text-align: center; }
     .hero-inner { flex-direction: column-reverse; gap: 2rem; }
+    .hero-left { width: 100%; min-width: 0; }
     .hero-badges { justify-content: center; }
-    .hero-right { flex: none; }
-    .hero-stats { gap: 24px; }
+    .hero-right { flex: none; width: 100%; }
+    .hero h1 { font-size: clamp(1.8rem, 9vw, 2.35rem); }
+    .hero p { font-size: 1rem; overflow-wrap: anywhere; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .hero-buttons .btn { width: 100%; max-width: 280px; }
+    .hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; width: 100%; }
     .enforcement-content { flex-direction: column; text-align: center; }
     .enforcement-penalty { text-align: center; }
+    .penalty-detail { display: block; overflow-wrap: anywhere; }
     .services-grid { grid-template-columns: 1fr; }
 }
